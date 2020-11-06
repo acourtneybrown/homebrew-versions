@@ -61,7 +61,6 @@ class PythonAT36 < Formula
       --enable-loadable-sqlite-extensions
       --without-ensurepip
       --with-dtrace
-      --with-openssl=#{Formula["openssl@1.1"].opt_prefix}
     ]
 
     args << "--without-gcc" if ENV.compiler == :clang
@@ -69,6 +68,10 @@ class PythonAT36 < Formula
     cflags   = []
     ldflags  = []
     cppflags = []
+
+    # Pick up Openssl library - see https://devguide.python.org/setup/#build-dependencies
+    cppflags << "-I#{Formula["openssl@1.1"].opt_prefix}/include"
+    ldflags << "-L#{Formula["openssl@1.1"].opt_prefix}/lib"
 
     if MacOS.sdk_path_if_needed
       # Help Python's build system (setuptools/pip) to build things on SDK-based systems
