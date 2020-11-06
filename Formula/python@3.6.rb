@@ -5,11 +5,11 @@ class PythonAT36 < Formula
   sha256 "35446241e995773b1bed7d196f4b624dadcadc8429f26282e756b2fb8a351193"
   revision 1
 
-  bottle do
-    sha256 "1bc5a2d3f0a8602bf2f46de7c43fcb6dde4f110c0f4518d4e802cb1f733a43de" => :high_sierra
-    sha256 "131d39120ac6ca2f21bf231de7414c08916cea472bc5219e0bcb49541f77cb9f" => :sierra
-    sha256 "b2584ea6f16c47fe3795745e9cae5a7762f750aa78c15cbe14736dcd2602b755" => :el_capitan
-  end
+  # bottle do
+  #   sha256 "1bc5a2d3f0a8602bf2f46de7c43fcb6dde4f110c0f4518d4e802cb1f733a43de" => :high_sierra
+  #   sha256 "131d39120ac6ca2f21bf231de7414c08916cea472bc5219e0bcb49541f77cb9f" => :sierra
+  #   sha256 "b2584ea6f16c47fe3795745e9cae5a7762f750aa78c15cbe14736dcd2602b755" => :el_capitan
+  # end
 
   head do
     url "https://github.com/python/cpython.git"
@@ -64,14 +64,14 @@ class PythonAT36 < Formula
 
   # setuptools remembers the build flags python is built with and uses them to
   # build packages later. Xcode-only systems need different flags.
-  pour_bottle? do
-    reason <<~EOS
-      The bottle needs the Apple Command Line Tools to be installed.
-        You can install them, if desired, with:
-          xcode-select --install
-    EOS
-    satisfy { MacOS::CLT.installed? }
-  end
+  # pour_bottle? do
+  #   reason <<~EOS
+  #     The bottle needs the Apple Command Line Tools to be installed.
+  #       You can install them, if desired, with:
+  #         xcode-select --install
+  #   EOS
+  #   satisfy { MacOS::CLT.installed? }
+  # end
 
   def install
     # Unset these so that installing pip and setuptools puts them where we want
