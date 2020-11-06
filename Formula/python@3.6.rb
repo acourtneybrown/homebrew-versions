@@ -1,8 +1,8 @@
 class PythonAT36 < Formula
   desc "Interpreted, interactive, object-oriented programming language"
   homepage "https://www.python.org/"
-  url "https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz"
-  sha256 "f434053ba1b5c8a5cc597e966ead3c5143012af827fd3f0697d21450bb8d87a6"
+  url "https://www.python.org/ftp/python/3.6.8/Python-3.6.8.tar.xz"
+  sha256 "35446241e995773b1bed7d196f4b624dadcadc8429f26282e756b2fb8a351193"
   revision 1
 
   bottle do
@@ -24,7 +24,9 @@ class PythonAT36 < Formula
   deprecated_option "with-brewed-tk" => "with-tcl-tk"
 
   depends_on "pkg-config" => :build
-  depends_on "sphinx-doc" => :build
+  # depends_on "sphinx-doc" => :build  # Error: python contains a recursive dependency on itself:
+  #                                        python depends on sphinx-doc
+  #                                        sphinx-doc depends on python
   depends_on "gdbm"
   depends_on "openssl"
   depends_on "readline"
