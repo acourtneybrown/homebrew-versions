@@ -202,8 +202,8 @@ class PythonAT36 < Formula
         end
       end
 
-      system "make", "html"
-      doc.install Dir["build/html/*"]
+      # system "make", "html"
+      # doc.install Dir["build/html/*"]
     end
 
     # Install unversioned symlinks in libexec/bin.
