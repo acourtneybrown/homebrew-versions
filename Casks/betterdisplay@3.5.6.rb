@@ -34,7 +34,7 @@ cask "betterdisplay@3.5.6" do
   homepage "https://betterdisplay.pro/"
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on macos: ">= :big_sur"
 
   app "BetterDisplay.app"
   # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
