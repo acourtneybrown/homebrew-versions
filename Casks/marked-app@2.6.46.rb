@@ -13,7 +13,7 @@ cask "marked-app@2.6.46" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Marked #{version.major}.app"
 
