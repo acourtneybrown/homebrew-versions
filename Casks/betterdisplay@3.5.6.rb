@@ -27,8 +27,7 @@ cask "betterdisplay@3.5.6" do
     end
   end
 
-  url "https://github.com/waydabber/BetterDisplay/releases/download/v#{version}/BetterDisplay-v#{version}.dmg",
-      verified: "github.com/waydabber/BetterDisplay/"
+  url "https://github.com/waydabber/BetterDisplay/releases/download/v#{version}/BetterDisplay-v#{version}.dmg"
   name "BetterDisplay"
   desc "Display management tool"
   homepage "https://betterdisplay.pro/"
@@ -41,7 +40,7 @@ cask "betterdisplay@3.5.6" do
   shimscript = "#{staged_path}/betterdisplay.wrapper.sh"
   binary shimscript, target: "betterdisplaycli"
 
-  preflight do
+  preflight_steps do
     File.write shimscript, <<~EOS
       #!/bin/bash
       exec '#{appdir}/BetterDisplay.app/Contents/MacOS/BetterDisplay' "$@"
