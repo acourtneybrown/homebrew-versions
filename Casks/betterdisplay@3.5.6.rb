@@ -27,26 +27,17 @@ cask "betterdisplay@3.5.6" do
     end
   end
 
-  url "https://github.com/waydabber/BetterDisplay/releases/download/v#{version}/BetterDisplay-v#{version}.dmg",
-      verified: "github.com/waydabber/BetterDisplay/"
+  url "https://github.com/waydabber/BetterDisplay/releases/download/v#{version}/BetterDisplay-v#{version}.dmg"
   name "BetterDisplay"
   desc "Display management tool"
   homepage "https://betterdisplay.pro/"
 
   auto_updates true
-  depends_on macos: :big_sur
+  depends_on :macos
 
   app "BetterDisplay.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/betterdisplay.wrapper.sh"
-  binary shimscript, target: "betterdisplaycli"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/bash
-      exec '#{appdir}/BetterDisplay.app/Contents/MacOS/BetterDisplay' "$@"
-    EOS
-  end
+  command_wrapper "betterdisplaycli",
+                  executable: "#{appdir}/BetterDisplay.app/Contents/MacOS/BetterDisplay"
 
   uninstall quit:       "pro.betterdisplay.BetterDisplay",
             login_item: "BetterDisplay"
