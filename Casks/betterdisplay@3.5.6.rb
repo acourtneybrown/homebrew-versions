@@ -36,16 +36,8 @@ cask "betterdisplay@3.5.6" do
   depends_on macos: :big_sur
 
   app "BetterDisplay.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/betterdisplay.wrapper.sh"
-  binary shimscript, target: "betterdisplaycli"
-
-  preflight_steps do
-    write_file "#{staged_path}/betterdisplay.wrapper.sh", <<~EOS
-      #!/bin/bash
-      exec '#{staged_path}/BetterDisplay.app/Contents/MacOS/BetterDisplay' "$@"
-    EOS
-  end
+  command_wrapper "betterdisplaycli",
+                  executable: "#{appdir}/BetterDisplay.app/Contents/MacOS/BetterDisplay"
 
   uninstall quit:       "pro.betterdisplay.BetterDisplay",
             login_item: "BetterDisplay"
