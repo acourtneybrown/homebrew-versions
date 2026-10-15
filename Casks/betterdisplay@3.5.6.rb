@@ -41,9 +41,9 @@ cask "betterdisplay@3.5.6" do
   binary shimscript, target: "betterdisplaycli"
 
   preflight_steps do
-    write_file shimscript, <<~EOS
+    write_file "#{staged_path}/betterdisplay.wrapper.sh", <<~EOS
       #!/bin/bash
-      exec '#{appdir}/BetterDisplay.app/Contents/MacOS/BetterDisplay' "$@"
+      exec '#{staged_path}/BetterDisplay.app/Contents/MacOS/BetterDisplay' "$@"
     EOS
   end
 
