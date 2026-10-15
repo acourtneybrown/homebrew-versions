@@ -33,7 +33,7 @@ cask "betterdisplay@3.5.6" do
   homepage "https://betterdisplay.pro/"
 
   auto_updates true
-  depends_on macos: :big_sur
+  depends_on :macos
 
   app "BetterDisplay.app"
   command_wrapper "betterdisplaycli",
